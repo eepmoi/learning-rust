@@ -1,0 +1,30 @@
+git clone git@github.com:eepmoi/learning-rust.git
+
+git checkout -b update-readme-onboarding
+git push -u origin update-readme-onboarding
+
+git commit -m "Add hello world and guessing game"
+
+git push origin feature:andy -f
+
+git add -u ; git commit --amend --no-edit; git push -f
+git add . ; git commit --amend --no-edit; git push -f
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+links
+
+https://doc.rust-lang.org/book/title-page.html
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+install
+
+curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | sh
+rustc --version
+rustup doc
+
+****** vscode
+https://rust-analyzer.github.io/
+
+
+linked projects setting for mono repo
+
