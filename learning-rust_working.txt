@@ -4,6 +4,7 @@ git checkout -b update-readme-onboarding
 git push -u origin update-readme-onboarding
 
 git commit -m "Add hello world and guessing game"
+git commit -m "Add error_handling"
 
 git push origin feature:andy -f
 
@@ -28,3 +29,7 @@ https://rust-analyzer.github.io/
 
 linked projects setting for mono repo
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+error handling
+
+cargo new error_handling
