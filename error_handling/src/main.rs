@@ -1,10 +1,14 @@
+// #![feature(backtrace)]
+
 // use crate::file::*;
 mod aws;
 mod file;
 use crate::aws::*;
 use crate::file::*;
+use std::env;
 
 fn main() {
+    env::set_var("RUST_BACKTRACE", "1");
     // s3_list_main()
     // s3_list_3_main();
     // s3_list_generic_error().unwrap();
@@ -24,7 +28,18 @@ fn main() {
 // }
 
 fn s3_list_generic_error_main() {
-    match s3_list_generic_error() {
+    match s3_list_generic_error_backtrace_file() {
+        // match s3_list_generic_error_file() {
+        Ok(buckets) => println!("Buckets found: {:?}", buckets),
+        // Err(e) => println!("Error listing buckets: {}", e),
+        // Err(e) => println!("Error listing buckets: {:?}", e),
+        Err(e) => println!("Error listing buckets: {:?}", e), // Err(andy) => println!("Unknown error {:?}", andy),
+    };
+    println!("s3_list_generic_error_main");
+}
+
+fn s3_list_unknown_error_main() {
+    match s3_list_unknown_error() {
         Ok(buckets) => println!("Buckets found: {:?}", buckets),
         // Err(e) => println!("Error listing buckets: {}", e),
         // Err(e) => println!("Error listing buckets: {:?}", e),

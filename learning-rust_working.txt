@@ -1,3 +1,5 @@
+git commit --reuse-message=HEAD
+
 git clone git@github.com:eepmoi/learning-rust.git
 
 git checkout -b update-readme-onboarding
@@ -5,11 +7,14 @@ git push -u origin update-readme-onboarding
 
 git commit -m "Add hello world and guessing game"
 git commit -m "Add error_handling"
+git commit -m "Add misc files"
 
 git push origin feature:andy -f
 
 git add -u ; git commit --amend --no-edit; git push -f
 git add . ; git commit --amend --no-edit; git push -f
+
+git commit --reuse-message=HEAD
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 links
@@ -26,10 +31,52 @@ rustup doc
 ****** vscode
 https://rust-analyzer.github.io/
 
-
 linked projects setting for mono repo
+
+***** toolchain/complier versions
+rustup toolchain list
+rustup run stable rustc --version
+rustc 1.9.0-nightly (02310fd31 2016-03-19)
+
+
+https://stackoverflow.com/a/64701936
+Just add "rust-toochain" file into cargo folder
+  nightly
+  stable
+
+# via cli
+rustup default nightly
+rustup default stable
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+struct optional params
+
+cargo new struct_optional_params
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+datetime
+
+cargo new datetime
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+option none
+
+cargo new option_none
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+hashmap
+
+cargo new hash_map
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 error handling
 
 cargo new error_handling
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+type name
+
+cargo new type_name
+

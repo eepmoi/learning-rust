@@ -1,5 +1,6 @@
 use rusoto_core::Region;
 use rusoto_s3::{ListBucketsOutput, S3Client, S3};
+use std::backtrace::Backtrace; // nightly feature
 use thiserror::Error;
 
 extern crate rusoto_core;
@@ -16,24 +17,52 @@ pub enum AwsError {
     #[error("unknown aws error")]
     Unknown { msg: String },
 
-    #[error("GenericError occured")]
+    #[error("GenericError occurred")]
     GenericError {
         msg: String,
         source: std::sync::Arc<dyn std::error::Error + Sync + Send>,
+    },
+
+    // using thiserror with backtrace: https://stackoverflow.com/questions/61744018/how-do-i-print-a-backtrace-without-panicking-using-thiserror/71962327#71962327
+    #[error("GenericErrorBacktrace occurred")]
+    GenericErrorBacktrace {
+        msg: String,
+        source: std::sync::Arc<dyn std::error::Error + Sync + Send>,
+        backtrace: Backtrace,
     },
     // StdIoError(#[from] std::io::Error),
     #[error(transparent)]
     ListBucketsError(#[from] rusoto_core::RusotoError<rusoto_s3::ListBucketsError>),
 }
 
-pub fn s3_list_generic_error() -> Result<ListBucketsOutput, AwsError> {
+// pub fn s3_list_generic_error() -> Result<ListBucketsOutput, AwsError> {
+//     return Err(AwsError::GenericError {
+//         msg: "XYZ".to_string(),
+//         source: std::sync::Arc::new(error),
+//     });
+// }
+
+pub fn s3_list_unknown_error() -> Result<ListBucketsOutput, AwsError> {
     return Err(AwsError::Unknown {
         msg: "XYZ".to_string(),
     });
 }
 
+pub fn s3_list_generic_error_backtrace_file() -> Result<std::fs::File, AwsError> {
+    let f = std::fs::File::open("hello.txt").map_err(|error| AwsError::GenericErrorBacktrace {
+        msg: "ABC".to_string(),
+        source: std::sync::Arc::new(error),
+        backtrace: Backtrace::force_capture(),
+    })?;
+    return Ok(f);
+}
+
 pub fn s3_list_generic_error_file() -> Result<std::fs::File, AwsError> {
     let f = std::fs::File::open("hello.txt").map_err(|error| AwsError::GenericError {
+        msg: "ABC".to_string(),
+        source: std::sync::Arc::new(error),
+    })?;
+    let f2 = std::fs::File::open("hello.txt").map_err(|error| AwsError::GenericError {
         msg: "ABC".to_string(),
         source: std::sync::Arc::new(error),
     })?;
